@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title></title>
 </head>
 <body>
-  
+  <article id="app">
+    <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
+    <ul class="box"></ul>
+    <section class="add-section">
+      <h2 class="add-tit">버튼을 누르면 할일이 추가됩니다.</h2>
+      <input type="text" id="txt">
+      <button class="add-btn">추가하기</button>
+    </section>
+  </article>
+
   <script>
     class Todo{
       constructor (item, finished) {
@@ -19,13 +29,16 @@
       }
     }
 
+
+
     // todoList에 할 일 더하고 빼주는 기능 구현!
     class TodoManager {
       constructor(){
         this.todoList = [];
       }
-      addItem(item, finished = false) {
-        this.todoList.push(new Todo(item, finished))
+      addItem(txt, finished = false) {
+        var content = document.getElementById("content").value;
+        this.todoList.unshift(new Todo(content, finished));
       }
       getItems(){
         console.log(this.todoList);
@@ -35,6 +48,19 @@
       }
     }
     const manager = new TodoManager();
+
+    document.querySelector(".add-btn").addEventListener("click", () => {
+      let text = document.querySelector("#txt").value;
+      let lst = document.createElement("li");
+      lst.innerText = text;
+      document.querySelector(".box").append(lst);
+      console.log(text);
+      text = '';
+      console.log(text);
+    });
+
+
+
   </script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+body, article, ul, h1 {
+  padding: 0;
+  margin: 0;
+}
+li {
+  list-style: none;
+}
+/* 스타일작업 시작 */
+body {
+  background-color: #203239;
+
+}
+#app {
+  background-color: #EEEDDE;
+  width: 500px;
+  /* height: 640px; */
+  box-sizing: border-box;
+  margin: 30px auto;
+  text-align: center;
+  padding: 30px;
+}
+.tit {
+  margin-bottom: 20px;
+}
+.box {
+  background-color: #E0DDAA;
+  border-radius: 30px;
+  height: 400px;
+  padding: 15px 10px;
+}
+.box li {
+  background-color: #203239;
+  color: #EEEDDE;
+  text-align: start;
+  text-indent: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+}
+/* 추가하는 버튼섹션 디자인입니다. */
+.add-section {
+  margin-top: auto;
+}
+.add-tit {
+  font-size: 18px;
+}
