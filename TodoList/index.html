@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+  
+  <script>
+    class Todo{
+      constructor (item, finished) {
+        this.item = item;
+        this.finished = finished;
+      }
+      changeState(){
+        this.finished = !this.finished
+      }
+    }
+
+    // todoList에 할 일 더하고 빼주는 기능 구현!
+    class TodoManager {
+      constructor(){
+        this.todoList = [];
+      }
+      addItem(item, finished = false) {
+        this.todoList.push(new Todo(item, finished))
+      }
+      getItems(){
+        console.log(this.todoList);
+      }
+      getLeftTodoCount() {
+        console.log(this.todoList.filter(e => e.finished == false).length);
+      }
+    }
+    const manager = new TodoManager();
+  </script>
+</body>
+</html>
