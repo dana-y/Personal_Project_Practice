@@ -9,57 +9,50 @@
 </head>
 <body>
   <article id="app">
-    <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
-    <ul class="box"></ul>
-    <section class="add-section">
-      <h2 class="add-tit">버튼을 누르면 할일이 추가됩니다.</h2>
-      <input type="text" id="txt">
-      <button class="add-btn">추가하기</button>
-    </section>
+      <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
+      <ul class="box"></ul>
+      <section class="add-section">
+          <h2 class="add-tit">버튼을 누르면 할일이 추가됩니다.</h2>
+          <h2 class="add-tit">리스트를 클릭하면 할일이 삭제됩니다.</h2>
+          <input type="text" id="txt">
+          <button class="add-btn">추가하기</button>
+      </section>
   </article>
 
   <script>
-    class Todo{
-      constructor (item, finished) {
-        this.item = item;
-        this.finished = finished;
+      const box = document.querySelector('.box');
+      const text = document.querySelector('#txt');
+      const button = document.querySelector('.add-btn');
+      class Todo{
+          constructor (text) {
+              this.text = text;
+          }
       }
-      changeState(){
-        this.finished = !this.finished
+
+      // todoList에 할 일 더하고 빼주는 기능 구현!
+      class ToDoManager {
+          constructor (list = []) {
+              this.list = list;
+          }
+          addItem() {
+              const todo = document.createElement('li');
+              todo.innerText = new Todo(text.value).text;
+              box.appendChild(todo);
+              text.value = '';
+              // this.list.push(new Todo());
+          }
+          removeItem(item) {
+              box.removeChild(item);
+          }
       }
-    }
 
-
-
-    // todoList에 할 일 더하고 빼주는 기능 구현!
-    class TodoManager {
-      constructor(){
-        this.todoList = [];
-      }
-      addItem(txt, finished = false) {
-        var content = document.getElementById("txt").value;
-        this.todoList.unshift(new Todo(content, finished));
-      }
-      getItems(){
-        console.log(this.todoList);
-      }
-      getLeftTodoCount() {
-        console.log(this.todoList.filter(e => e.finished == false).length);
-      }
-    }
-    const manager = new TodoManager();
-
-    document.querySelector(".add-btn").addEventListener("click", () => {
-      let text = document.querySelector("#txt").value;
-      let lst = document.createElement("li");
-      lst.innerText = text;
-      document.querySelector(".box").append(lst);
-      text = '';
-      manager.addItem();
-    });
-
-
-
+      const manager = new ToDoManager();
+      button.addEventListener('click', manager.addItem);
+      box.addEventListener('click', e => {
+          if (e.target.nodeName === 'LI') {
+              manager.removeItem(e.target);
+          }
+      })
   </script>
 </body>
 </html>
