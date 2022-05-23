@@ -17,8 +17,38 @@
   <article id="app">
     <h1 class="tit">🦀바닷속에 사는 귀여운 게친구를 구해주세요!🦀</h1>
     <div class="play">
-
+      <div class="crab"></div>
     </div>
   </article>
+
+  <script>
+    const crab = document.querySelector(".crab");
+    let pos = 350;
+    let keys = {};
+    
+    function move(event) {
+      keys[event.key] = true;
+    }
+    function stop(e) {
+      keys[event.key] = false;
+    }
+
+    document.addEventListener('keydown', move);
+    document.addEventListener('keyup', stop);
+
+    function play() {
+      if(keys.ArrowRight) {
+        pos += 5;
+        crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+      }
+      if(keys.ArrowLeft) {
+        pos -= 5;
+        crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+      }
+      window.requestAnimationFrame(play);
+    }
+    window.requestAnimationFrame(play);
+
+  </script>
 </body>
 </html>

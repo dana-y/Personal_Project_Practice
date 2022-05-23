@@ -9,7 +9,7 @@ body {
 
 #app {
   background-color: aliceblue;
-  margin: 100px auto;
+  margin: 50px auto 0;
   width: 800px;
   height: 700px;
   padding: 30px;
@@ -26,4 +26,12 @@ body {
   background-size: cover;
   border: 3px solid black;
   border-radius: 10px;
+}
+
+.crab {
+  width: 100px;
+  height: 60px;
+  background-image: url(./images/crab.svg);
+  background-size: cover;
+  transform: translateY(500px) translateX(350px);
 }
