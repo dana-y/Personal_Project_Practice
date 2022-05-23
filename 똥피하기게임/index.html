@@ -38,12 +38,16 @@
 
     function play() {
       if(keys.ArrowRight) {
+        if(pos < 800){
         pos += 5;
         crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+        }
       }
       if(keys.ArrowLeft) {
-        pos -= 5;
-        crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+        if(pos > 0) {
+          pos -= 5;
+          crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+        }
       }
       window.requestAnimationFrame(play);
     }
