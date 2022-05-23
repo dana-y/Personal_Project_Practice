@@ -17,6 +17,7 @@
   <article id="app">
     <h1 class="tit">🦀바닷속에 사는 귀여운 게친구를 구해주세요!🦀</h1>
     <div class="play">
+      <div class="trash"></div>
       <div class="crab"></div>
     </div>
   </article>
@@ -38,20 +39,22 @@
 
     function play() {
       if(keys.ArrowRight) {
-        if(pos < 800){
+        if(pos < 700){
         pos += 5;
-        crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+        crab.style.transform = `translateX(${pos}px)  translateY(430px)`
         }
       }
       if(keys.ArrowLeft) {
         if(pos > 0) {
           pos -= 5;
-          crab.style.transform = `translateX(${pos}px)  translateY(500px)`
+          crab.style.transform = `translateX(${pos}px)  translateY(430px)`
         }
       }
       window.requestAnimationFrame(play);
     }
     window.requestAnimationFrame(play);
+
+    let dropN = 0;
 
   </script>
 </body>
