@@ -17,6 +17,9 @@
   <article id="app">
     <h1 class="tit">🦀바닷속에 사는 귀여운 게친구를 구해주세요!🦀</h1>
     <div class="play">
+      <button class="btn">시 작</button>
+      <span class="score">score : <strong class="score-n">0</strong></span>
+      <div class="life"></div>
       <div class="trash"></div>
       <div class="crab"></div>
     </div>
@@ -41,13 +44,13 @@
       if(keys.ArrowRight) {
         if(pos < 700){
         pos += 5;
-        crab.style.transform = `translateX(${pos}px)  translateY(430px)`
+        crab.style.transform = `translateX(${pos}px)  translateY(330px)`
         }
       }
       if(keys.ArrowLeft) {
         if(pos > 0) {
           pos -= 5;
-          crab.style.transform = `translateX(${pos}px)  translateY(430px)`
+          crab.style.transform = `translateX(${pos}px)  translateY(330px)`
         }
       }
       window.requestAnimationFrame(play);
@@ -55,7 +58,36 @@
     window.requestAnimationFrame(play);
 
     let dropN = 0;
+    let life = 5;
+    let trashPos = 0;
+    let trash = document.querySelector(".trash");
 
+    const btn = document.querySelector(".btn");
+
+    btn.addEventListener("click", () => {
+        btn.classList.add("ir");
+
+        dropN = Math.floor(Math.random()*730);
+        while(trashPos < 400) {
+            trashPos += 5;
+            trash.style.transform = `translateX(${dropN}px)  translateY(${trashPos}px)`
+          }
+          window.requestAnimationFrame(play);
+    });
+    window.requestAnimationFrame(play);
+
+
+    // function drop () {
+
+      
+    //   dropN = Math.floor(Math.random()*730);
+    //   for ( let i = trashPos; i < 500; i++) {
+    //     trash.style.transform = `translateX(${dropN}px)  translateY(${i}px)`
+    //   }
+    //   while(life > 0) {
+    //     trash.style.transform = `translateX(${dropN}px)  translateY(330px)`
+    //   }
+    // }
   </script>
 </body>
 </html>
