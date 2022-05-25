@@ -37,6 +37,14 @@ body {
   margin: 5px;
   padding: 5px;
 }
+.box li span {
+  /* line-height: 20px; */
+  font-size: 13px;
+  color:#203239;
+  font-weight: 300;
+  margin-right: 8px;
+  float: right;
+}
 /* 추가하는 버튼섹션 디자인입니다. */
 .add-section {
   margin-top: auto;
@@ -47,11 +55,4 @@ body {
 .todo-context{
   font-size: 15px;
   font-weight: 600;
-}
-.date {
-  /* line-height: 20px; */
-  font-size: 13px;
-  color:#203239;
-  font-weight: 300;
-  margin-right: 8px;
 }

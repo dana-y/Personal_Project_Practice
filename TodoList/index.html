@@ -11,25 +11,30 @@
   <article id="app">
       <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
       <ul class="box"></ul>
+
       <section class="add-section">
           <p class="add-tit">버튼을 누르면 할일이 추가됩니다.</p>
           <p class="add-tit">리스트를 클릭하면 할일이 삭제됩니다.</p>
           <input type="text" id="txt">
           <button class="add-btn">추가하기</button>
+          <button class="clear-button">다했다!</button>
       </section>
   </article>
 
 <script>
+
     const box = document.querySelector('.box');
     const text = document.querySelector('#txt');
-    const button = document.querySelector('.add-btn');
+    const addButton = document.querySelector('.add-btn');
     class Todo{
         constructor (text) {
             this.text = text;
         }
     }
-
       // todoList에 할 일 더하고 빼주는 기능 구현!
+    memo = []
+    let keyNumber = 0;
+
     class ToDoManager {
         constructor (list = []) {
             this.list = list;
@@ -51,34 +56,82 @@
                 mm='0'+mm
             } 
             today = yyyy+'-' + mm+'-'+dd +'-'+ WEEKDAY[day];
-            date.innerText = today;
+            
+            // frame 만들어서 text랑 날짜 value에 넣어주기
 
-            date.style.float = "right";
-            date.classList.add("date");
-            todo.innerText = new Todo(text.value).text;
-            todo.classList.add("todo-context")
-            box.appendChild(todo);
-            todo.appendChild(date);
+            const frame = [[text.value, today]];
+            
+            
+            // frame.push(text.value);
+            // frame.push(today);
+            
+
+            // todo.innerText = new Todo(text.value).text;
+            
+            localStorage.setItem(keyNumber, frame[0]);
+            viewer.sync();
+
+            keyNumber++;
             text.value = '';
               // this.list.push(new Todo());
+            //   console.log(localStorage.)
         }
         removeItem(item) {
             box.removeChild(item);
         }
+        removeAll() {
+            localStorage.clear();
+            viewer.sync();
+            keyNumber = 0;
+        }
     }
 
+    // local에{1: "빨래하기", "2022-05-23-MON"}, {} 이런식으로 넣어서 split하자
+    // 로컬스토리지랑 연결해주는 class
+    class ViewMaker {
+        constructor () {
+            };
+        sync() {
+            while (box.hasChildNodes()) {	// 부모노드가 자식이 있는지 여부를 알아낸다
+                box.removeChild(
+                    box.firstChild
+                );
+            }
+            for(let i = 0; i < localStorage.length; i++){
+                const listContext = localStorage[i].split(",");
+
+                const myList = document.createElement("li");
+                const mySpan = document.createElement("span");
+                
+                myList.innerText = "📌 " + listContext[0];
+                mySpan.innerText = listContext[1];
+                
+                box.appendChild(myList);
+                myList.appendChild(mySpan);
+                
+            }
+            
+        }
+    }
+    
+    const viewer = new ViewMaker();
     const manager = new ToDoManager();
-    button.addEventListener('click', manager.addItem);
-    button.addEventListener('click', manager.addItem);
+    
+    (function() {
+            viewer.sync();
+        })();
+
+    clearBtn = document.querySelector(".clear-button");
+
+    addButton.addEventListener('click', manager.addItem);
+    clearBtn.addEventListener('click', manager.removeAll);
 
     box.addEventListener('click', e => {
         if (e.target.nodeName === 'LI') {
+            
             manager.removeItem(e.target);
         }
-    })
-
-
-    console.log(today);
+    });
 
   </script>
 </body>
