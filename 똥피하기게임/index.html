@@ -20,7 +20,7 @@
       <button class="btn">시 작</button>
       <span class="score">score : <strong class="score-n">0</strong></span>
       <div class="life"></div>
-      <div class="trash"></div>
+      <div class="trash ir"></div>
       <div class="crab"></div>
     </div>
   </article>
@@ -57,25 +57,68 @@
     }
     window.requestAnimationFrame(play);
 
-    let dropN = 0;
+
+    // 쓰레기 떨어지는 코드
+    let playSpace = document.querySelector("play");
+    let dropX = 0;
     let life = 5;
     let trashPos = 0;
-    let trash = document.querySelector(".trash");
 
+    class makeTrash {
+      constructor(item) {
+        this.trashPosX = Math.floor(Math.random()*730);
+        this.trashPosY = 0;
+        this.myDiv = document.createElement("div");
+        this.item = item;
+      }
+      making() {
+        this.myDiv.classList.add("item", this.item);
+        this.myDiv.style.transform = `translateY(${trashPosY}px)`
+        this.myDiv.style.left = this.trashPosX + "px";
+        playSpace.appendChild(this.myDiv);
+      }
+      drop(){
+        const moving = setInterval(() => {
+          if(this.trashPosY<300) {
+            this.trashPosY += 5;
+            this.myDiv.style.transform = `translateY(${this.trashPosY}px)`
+          } else {
+            this.myDiv.remove();
+            clearInterval(moving);
+          }
+        })
+      }
+    }
+    let trash = document.querySelector(".trash");
     const btn = document.querySelector(".btn");
 
     btn.addEventListener("click", () => {
-        btn.classList.add("ir");
 
-        dropN = Math.floor(Math.random()*730);
-        while(trashPos < 400) {
-            trashPos += 5;
-            trash.style.transform = `translateX(${dropN}px)  translateY(${trashPos}px)`
-          }
-          window.requestAnimationFrame(play);
-    });
-    window.requestAnimationFrame(play);
+      btn.classList.add("ir");
+      trash.classList.remove("ir")
 
+      // while(trash.clientY > 525) {
+
+      // }
+      // if() {
+       
+      //   trash.style.transform = `translateX(${dropX}px)  translateY(0)`
+      // }
+      });
+    
+    document.addEventListener("click", (e) => {
+      console.log(e.clientY);
+    })
+
+    if(trash.clientY == 500) {
+      console.log("닿음");
+      // dropX = Math.floor(Math.random()*730);
+      // trash.style.transform = `translateX(${dropX}px)  translateY(0)`
+    }
+    // function drop() {
+    //   dropX = Math.floor(Math.random()*730);
+    //   trash.style.transform = `translateX(${dropX}px)  translateY(0)`
+    // }
 
     // function drop () {
 

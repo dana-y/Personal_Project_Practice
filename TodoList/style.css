@@ -44,3 +44,14 @@ body {
 .add-tit {
   font-size: 18px;
 }
+.todo-context{
+  font-size: 15px;
+  font-weight: 600;
+}
+.date {
+  /* line-height: 20px; */
+  font-size: 13px;
+  color:#203239;
+  font-weight: 300;
+  margin-right: 8px;
+}

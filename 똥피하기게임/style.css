@@ -69,4 +69,15 @@ body {
   height: 70px;
   background-image: url(./images/trash.svg);
   background-size: cover;
+  animation: drop infinite 3s ease;
+  transform: translateX(30px);
+}
+
+@keyframes drop {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(500px);
+  }
 }
