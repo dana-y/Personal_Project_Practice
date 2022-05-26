@@ -8,20 +8,22 @@
     <title></title>
 </head>
 <body>
-  <article id="app">
-      <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
-      <ul class="box"></ul>
+    <article id="app">
+        <h1 class="tit">✨ 힛츄윗댓 Todo Todo Todo List ✨</h1>
+        <ul class="box"></ul>
 
-      <section class="add-section">
-          <p class="add-tit">버튼을 누르면 할일이 추가됩니다.</p>
-          <p class="add-tit">리스트를 클릭하면 할일이 삭제됩니다.</p>
-          <input type="text" id="txt">
-          <button class="add-btn">추가하기</button>
-          <button class="clear-button">다했다!</button>
-      </section>
-  </article>
+        <section class="add-section">
+            <p class="add-tit">버튼을 누르면 할일이 추가됩니다.</p>
+            <p class="add-tit">리스트를 클릭하면 할일이 삭제됩니다.</p>
+            <input type="text" id="txt">
+            <button class="add-btn">추가하기</button>
+            <button class="clear-button">다했다!</button>
+        </section>
+    </article>
 
 <script>
+    // 프론트엔드 라이브러리 프레임워크를 배우고 다시 한 번 생각해보기!! react 배우고 나서 다시 보기!
+
 
     const box = document.querySelector('.box');
     const text = document.querySelector('#txt');
@@ -31,6 +33,7 @@
             this.text = text;
         }
     }
+
       // todoList에 할 일 더하고 빼주는 기능 구현!
     memo = []
     let keyNumber = 0;
@@ -61,20 +64,12 @@
 
             const frame = [[text.value, today]];
             
-            
-            // frame.push(text.value);
-            // frame.push(today);
-            
-
-            // todo.innerText = new Todo(text.value).text;
-            
             localStorage.setItem(keyNumber, frame[0]);
             viewer.sync();
 
             keyNumber++;
             text.value = '';
-              // this.list.push(new Todo());
-            //   console.log(localStorage.)
+
         }
         removeItem(item) {
             box.removeChild(item);
@@ -92,11 +87,12 @@
         constructor () {
             };
         sync() {
-            while (box.hasChildNodes()) {	// 부모노드가 자식이 있는지 여부를 알아낸다
+            while (box.hasChildNodes()) {
                 box.removeChild(
                     box.firstChild
                 );
             }
+
             for(let i = 0; i < localStorage.length; i++){
                 const listContext = localStorage[i].split(",");
 
@@ -106,14 +102,14 @@
                 myList.innerText = "📌 " + listContext[0];
                 mySpan.innerText = listContext[1];
                 
+                myList.classList(keyNumber)
                 box.appendChild(myList);
                 myList.appendChild(mySpan);
-                
             }
-            
         }
     }
-    
+
+
     const viewer = new ViewMaker();
     const manager = new ToDoManager();
     
@@ -123,16 +119,21 @@
 
     clearBtn = document.querySelector(".clear-button");
 
+    // 클릭하면 제거되는 기능
     addButton.addEventListener('click', manager.addItem);
     clearBtn.addEventListener('click', manager.removeAll);
 
     box.addEventListener('click', e => {
         if (e.target.nodeName === 'LI') {
+
             
-            manager.removeItem(e.target);
+
+            localStorage.removeItem(getKeyByValue(localStorage, e.target.innerText));
+            viewer.sync();
         }
     });
 
-  </script>
+
+</script>
 </body>
 </html>
