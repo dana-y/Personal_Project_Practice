@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e6b916dadf.js" crossorigin="anonymous"></script>
+    <title>WYSIWYG</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 
+    1. 기본 UI를 제작합니다.
+  2. 요소가 편집 가능해야합니다.
+  3. 버튼을 눌렀을 때 뭔가 기능이 동작해야합니다.
+  1. 드래그를 통해 우리가 선택한 노드가 무엇인지 파악할 수 있어야합니다.
+  2. 기능1 : 선택한 노드의 한 줄이 통으로 스타일이 바뀌는 기능
+  3. 기능2 : 선택한 노드만 바뀌는 기능 
+  -->
+  <article id="app">
+    <ul>
+      <li>
+        <button type="button" data-command="h1">H1</button>
+      </li>
+      <li>
+        <button type="button" data-command="h2">H2</button>
+      </li>
+      <li>
+        <button type="button" data-command="h3">H3</button>
+      </li>
+      <li>
+        <button type="button" data-command="p">P</button>
+      </li>
+      <li>
+        <button type="button" data-command="bold"><i class="fa-solid fa-bold"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="italic"><i class="fa-solid fa-italic"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="underline"><i class="fa-solid fa-underline"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="strikeThrough"><i class="fa-solid fa-strikethrough"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="justifyLeft"><i class="fa-solid fa-align-left"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="justifyRight"><i class="fa-solid fa-align-right"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="justifyCenter"><i class="fa-solid fa-align-center"></i></button>
+      </li>
+      <li>
+        <button type="button" data-command="justifyFull"><i class="fa-solid fa-align-justify"></i></button>
+      </li>
+    </ul>
+  </article>
+  <script>
+
+  </script>
+</body>
+</html>
