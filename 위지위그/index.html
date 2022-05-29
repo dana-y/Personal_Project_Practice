@@ -65,21 +65,14 @@
   <script>
     document.querySelectorAll('.options button').forEach(item => item.addEventListener('click', function () {
             const command = item.dataset.command;
-            if (command === 'h1' || command === 'h2' || command === 'h3' || command === 'p') {
+            if (command === 'h1' || command === 'h2' || command === 'h3' || command === 'p') { //전체를 바꿔주는 것과 선택한 영역만 바꿔주는 걸로 구분
                 document.execCommand('formatBlock', false, command);
             } else {
               document.execCommand(command);
             }
 
         }));
-    // document.querySelectorAll("options button").forEach(item => item.addEventListener("click", () => {
-    //   const command = item.dataset.command; //command라는 상수 선언
-    //   if(command === "h1" || command === "h2" || command === "h3" || command === "p") { //전체를 바꿔주는 것과 선택한 영역만 바꿔주는 걸로 구분
-    //     document.execCommand("formatBlock", false, command);
-    //   } else {
 
-    //   }
-    // })) 
   </script>
 </body>
 </html>
