@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>끝말잇기</title>
+  <link rel="stylesheet" href="word.css">
+</head>
+
+<body>
+  <header class="header">
+    <h1 class="header-title">끝말잇기 게임</h1>
+  </header>
+  <main class="main">
+    <h2 class="main-title"><span id="order">1</span> 번째 참가자</h2>
+    <p class="main-sub">제시어: <span id="word">미정</span></p>
+    <input placeholder="입력해 주세요" type="text">
+    <div class="control-btn">
+      <button type="button" class="start-btn">
+        <img src="./src/start-default.png" alt="start" />
+      </button>
+      <button type="button" class="clear-btn">
+        <img src="./src/reset-default.png" alt="reset" />
+      </button>
+    </div>
+  </main>
+
+  <script>
+    //코드 구현 부분
+    const $input = document.querySelector('input');
+    const $nowWord = document.querySelector('#word');
+    const $startBtn = document.querySelector('.start-btn');
+    const $order = document.querySelector('#order');
+
+    let nowOrder = 1;
+    let oldWord;
+    let inputWord;
+
+    const peopleNum = parseInt(prompt('몇명인가요?'));
+    
+    $order.textContent = nowOrder;
+    const getInputValue = () => {
+      inputWord = $input.value
+    }
+
+    const handleOrder = () => {
+      if(nowOrder + 1 > peopleNum) {
+        nowOrder = 1
+      } else {
+        nowOrder += 1;
+      }
+      $order.textContent = nowOrder
+    }
+    const err = () => {
+      alert('다시써라');
+    }
+    const inputInit = () => {
+      $input.value = ''
+      $input.focus();
+    }
+    const changeNowWord = () => {
+      $nowWord.textContent = inputWord;
+      oldWord = inputWord;
+      handleOrder()
+    }
+
+    const runBtn = () => {
+      !oldWord || oldWord[oldWord.length-1] === inputWord[0] ?changeNowWord() : err();
+      inputInit();
+    }
+    
+
+    $input.addEventListener('input', getInputValue);
+    $startBtn.addEventListener('click', runBtn)
+
+  </script>
+</body>
+
+</html>
